@@ -1,19 +1,38 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <now-playing :current="current.song"> </now-playing>
+    <play-list :songs="song"> </play-list>
+    <song-list @playlist_add="add_to_playlist" @current="current"> </song-list>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import NowPlaying from "@/components/NowPlaying.vue";
+import PlayList from "@/components/PlayList.vue";
+import SongList from "@/components/SongList.vue";
 
 export default {
-  name: 'App',
+  methods: {
+    current_song(song) {
+      this.current = song;
+    },
+    add_to_playlist(song) {
+      this.playlist = this.playlist + song;
+    },
+  },
+  data() {
+    return {
+      current: {},
+      songs: [],
+    };
+  },
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    NowPlaying,
+    PlayList,
+    SongList,
+  },
+};
 </script>
 
 <style>
