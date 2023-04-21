@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <now-playing :current="current.song"> </now-playing>
-    <play-list :songs="song"> </play-list>
-    <song-list @playlist_add="add_to_playlist" @current="current"> </song-list>
+    <now-playing :play="play"> </now-playing>
+    <play-list :songs="songs" @play="playsong"> </play-list>
+    <song-list @playlistAdd="addToPlaylist" @current="current"> </song-list>
   </div>
 </template>
 
@@ -13,17 +13,18 @@ import SongList from "@/components/SongList.vue";
 
 export default {
   methods: {
-    current_song(song) {
-      this.current = song;
+    addToPlaylist: function (song) {
+      this.songs.push(song);
     },
-    add_to_playlist(song) {
-      this.playlist = this.playlist + song;
+    playsong: function (song) {
+      this.play = undefined;
+      this.play = song;
     },
   },
   data() {
     return {
-      current: {},
       songs: [],
+      play: undefined,
     };
   },
   name: "App",

@@ -4,7 +4,7 @@
     <!-- using a loop to add the buttons in to play a song -->
     <div v-for="song in songs" :key="song.id">
       <!-- event listener to each of the buttons -->
-      <button @click="playlist_add(song)">
+      <button @click="playlistAdd(song)">
         ADD {{ song.title }} - {{ song.artist }}
       </button>
     </div>
@@ -14,15 +14,13 @@
 <script>
 export default {
   methods: {
-    playlist_add(song) {
-      this.current = song;
-      this.$emit(`playlist`, this.song + this.current);
-      this.$emit(`current`, this.current);
+    playlistAdd(song) {
+      this.$emit(`playlistAdd`, song);
     },
   },
   data() {
     return {
-      current: {},
+      current: undefined,
       songs: [
         {
           title: `rare`,
