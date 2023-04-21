@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Songs</h1>
-    <!-- using a loop to add the buttons in to play a song -->
+    <!-- using a loop to add the buttons in to add song to playlist -->
     <div v-for="song in songs" :key="song.id">
       <!-- event listener to each of the buttons -->
       <button @click="playlistAdd(song)">
@@ -14,13 +14,15 @@
 <script>
 export default {
   methods: {
+    //using $emit to bubble up the info to the parent for adding a song to the playlist
     playlistAdd(song) {
       this.$emit(`playlistAdd`, song);
     },
   },
+  //variables
   data() {
     return {
-      current: undefined,
+      //array of variables that have song info
       songs: [
         {
           title: `rare`,
